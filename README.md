@@ -37,22 +37,20 @@ cp .env.example .env
 npm run dev        # http://localhost:3000/ar
 ```
 
-## ربط Sanity (مرة واحدة)
+## Sanity — متصل ✅
 
-1. أنشئ مشروعًا على [sanity.io/manage](https://www.sanity.io/manage) (Dataset: `production`).
-2. ضع `Project ID` في `.env` ضمن `NEXT_PUBLIC_SANITY_PROJECT_ID`.
-3. من **API → CORS origins** أضف `http://localhost:3000` ودومين الموقع، وفعّل **Allow credentials**.
-4. من **API → Tokens** أنشئ Token بصلاحية **Editor**، وضعه في `SANITY_API_WRITE_TOKEN`.
-5. شغّل الأمر التالي، وهو يرفع كل المشاريع والصور والمقالات وآراء العملاء إلى Sanity:
-   ```bash
-   npm run seed
-   ```
-6. افتح `/studio` وسجّل الدخول، وكل المحتوى سيظهر للتعديل.
-7. **تحديث فوري بعد النشر:** من **API → Webhooks** أضف:
-   - URL: `https://YOUR-DOMAIN/api/revalidate`
-   - Trigger: Create / Update / Delete
-   - Projection: `{_type, "slug": slug.current}`
-   - Secret: نفس قيمة `SANITY_REVALIDATE_SECRET`
+- المشروع: **made** · Project ID: `d5a0q2ye` · Dataset: `production`
+- المحتوى مرفوع بالكامل: 18 مشروع، 8 مساحات، 6 مقارنات قبل/بعد، 16 رسالة واتساب، 3 مقالات بالـ SEO، إعدادات الموقع وأسعار الحاسبة، و193 صورة.
+- CORS مضاف: `http://localhost:3000` و `https://made-sa.co` و `https://www.made-sa.co`. لو نشرت على دومين تاني (مثلًا Vercel) أضفه من sanity.io/manage → API → CORS.
+- لوحة التحكم: افتح `/studio` على الموقع وسجّل دخول بحساب Sanity.
+
+**بعد النشر — تحديث فوري بعد Publish:** من **API → Webhooks** أضف:
+- URL: `https://made-sa.co/api/revalidate`
+- Trigger: Create / Update / Delete — Projection: `{_type, "slug": slug.current}`
+- Secret: نفس قيمة `SANITY_REVALIDATE_SECRET` في متغيرات الاستضافة
+(بدون webhook الصفحات تتحدث تلقائيًا كل ساعة.)
+
+> `npm run seed` موجود لو احتجت تعيد رفع المحتوى المدمج لمشروع/داتاسيت جديد (يحتاج `SANITY_API_WRITE_TOKEN`).
 
 ## النشر (Vercel أو Railway)
 
