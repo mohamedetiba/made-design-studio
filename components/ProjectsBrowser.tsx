@@ -54,14 +54,14 @@ export default function ProjectsBrowser({ projects, spaces, ba, locale, d, dp, d
 
   return (
     <>
-      <div className="wrap row" style={{ gap: 40, padding: '0 24px 32px' }}>
+      <div className="wrap row stats" style={{ gap: 40, paddingBottom: 32 }}>
         {[[projects.length, d.stats[0]], [photos, d.stats[1]], [projects.filter((p) => p.executed).length, d.stats[2]]].map(([n, l]) => (
           <div key={String(l)} className="col g8"><span className="latin" style={{ fontSize: 40, fontWeight: 300 }}>{n}</span><span className="muted small">{l}</span></div>
         ))}
       </div>
 
-      <div style={{ borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)', position: 'sticky', top: 72, zIndex: 20, background: 'rgba(244,240,234,.95)', backdropFilter: 'blur(8px)' }}>
-        <div className="wrap row" role="tablist" style={{ gap: 0 }}>
+      <div style={{ borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)', position: 'sticky', top: 'var(--hdr)', zIndex: 20, background: 'rgba(244,240,234,.95)', backdropFilter: 'blur(8px)' }}>
+        <div className="wrap row tabs" role="tablist" style={{ gap: 0 }}>
           {tabs.map((k, i) => (
             <button key={k} role="tab" aria-selected={tab === k} type="button" onClick={() => setTab(k)}
               style={{ minHeight: 56, padding: '0 22px', border: 0, background: 'none', cursor: 'pointer', fontSize: 16, fontWeight: tab === k ? 600 : 400, color: 'var(--ink)', boxShadow: tab === k ? 'inset 0 -2px 0 var(--ink)' : 'none' }}>
@@ -74,7 +74,7 @@ export default function ProjectsBrowser({ projects, spaces, ba, locale, d, dp, d
       {tab === 'projects' && (
         <section className="wrap col g28" style={{ padding: '48px 24px 100px' }}>
           <div className="row between center">
-            <div className="row" style={{ gap: 10 }}>
+            <div className="row chips" style={{ gap: 10 }}>
               {SECTORS.map((s, i) => <button key={s} type="button" className="chip" aria-pressed={sector === s} onClick={() => setSector(s)}>{d.filters[i]}</button>)}
             </div>
             <span className="muted small">{d.hint}</span>
@@ -87,7 +87,7 @@ export default function ProjectsBrowser({ projects, spaces, ba, locale, d, dp, d
 
       {tab === 'spaces' && cur && (
         <section className="wrap col g28" style={{ padding: '48px 24px 100px' }}>
-          <div className="row" style={{ gap: 10 }}>
+          <div className="row chips" style={{ gap: 10 }}>
             {spaces.map((s) => <button key={s.slug} type="button" className="chip" aria-pressed={space === s.slug} onClick={() => setSpace(s.slug)}>{t(s.name, locale)} <span className="latin" style={{ opacity: 0.6 }}>{s.images.length}</span></button>)}
           </div>
           <div className="col g8">

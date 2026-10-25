@@ -58,7 +58,7 @@ export default function Estimator({ d, settings }: { d: Dict['est']; settings: S
         <div className="est-result">
           <div className="col g8">
             <span style={{ fontSize: 14, color: 'var(--taupe)' }}>{d.result}</span>
-            <span className="latin ltr" style={{ fontWeight: 300, fontSize: 'clamp(26px,3vw,36px)' }}>{r.low} – {r.high} SAR</span>
+            <span className="latin ltr est-price" style={{ fontWeight: 300 }}>{r.low} – {r.high} SAR</span>
             <span style={{ fontSize: 13, color: 'var(--taupe)' }}>≈ {r.perM.toLocaleString('en-US')} {d.perM}</span>
           </div>
           <a className="btn btn-light" href={r.wa} target="_blank" rel="noopener" style={{ fontWeight: 600 }}>{d.cta}</a>

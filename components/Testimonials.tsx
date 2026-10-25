@@ -41,7 +41,7 @@ export default function Testimonials({ items, locale, d }: { items: Testimonial[
 
   return (
     <section id="testimonials" className="bg-sand" style={{ overflow: 'hidden' }} aria-label={d.eyebrow}>
-      <div className="wrap row center g56" style={{ padding: '100px 24px' }}>
+      <div className="wrap row center g56 sp">
         <div className="f1 col g28" style={{ flexBasis: 440 }}>
           <span className="eyebrow">{d.eyebrow}</span>
           <h2 className="h2" style={{ lineHeight: 1.4 }}>{d.title1}<br />{d.title2}</h2>

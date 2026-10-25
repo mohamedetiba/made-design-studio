@@ -69,7 +69,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: L
 
       <div className="wrap row g56" style={{ padding: '56px 24px 80px', alignItems: 'flex-start' }}>
         {toc.length > 1 && (
-          <nav className="toc" aria-label={d.blog.toc} style={{ flex: '0 1 260px', position: 'sticky', top: 100 }}>
+          <nav className="toc" aria-label={d.blog.toc}>
             <strong style={{ display: 'block', marginBottom: 10 }}>{d.blog.toc}</strong>
             {toc.map((h) => <a key={h.id} href={`#${h.id}`} style={{ paddingInlineStart: h.level === 'h3' ? 16 : 0 }}>{h.text}</a>)}
           </nav>

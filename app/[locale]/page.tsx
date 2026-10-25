@@ -86,7 +86,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
           <Link className="btn btn-line" href={`/${locale}/projects`}>{d.projects.all} ({projects.length})</Link>
         </Reveal>
         <Reveal className="row g40">
-          <Link href={`/${locale}/projects/${hero.slug}`} className="zoom" style={{ flex: '2 1 520px', minWidth: 0, height: 540, display: 'block' }}>
+          <Link href={`/${locale}/projects/${hero.slug}`} className="zoom feat-img" style={{ flex: '2 1 520px', minWidth: 0, height: 540, display: 'block' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={hero.cover.src} alt={t(hero.cover.alt, locale)} />
             {hero.executed && <span className="badge-dark">{d.projects.executed}</span>}
@@ -117,7 +117,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
 
       {/* spaces */}
       <section id="spaces" className="bg-sand">
-        <div className="wrap col g40" style={{ padding: '100px 24px' }}>
+        <div className="wrap col g40 sp">
           <Reveal className="row between end">
             <div className="col g14" style={{ maxWidth: 640 }}>
               <span className="eyebrow">{d.spaces.eyebrow}</span>
@@ -128,7 +128,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
           <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fill,minmax(260px,1fr))', gap: 16 }}>
             {spaces.map((s, i) => (
               <Reveal key={s.slug} delay={(i % 4) * 90} style={i === 0 ? { gridRow: 'span 2' } : undefined}>
-                <Link href={`/${locale}/projects?space=${s.slug}`} className="tile zoom" style={{ height: i === 0 ? '100%' : 240, minHeight: i === 0 ? 496 : 240 }}>
+                <Link href={`/${locale}/projects?space=${s.slug}`} className={`tile zoom${i === 0 ? ' tile-lg' : ''}`} style={{ height: i === 0 ? '100%' : 240, minHeight: i === 0 ? 496 : 240 }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={s.cover} alt={t(s.name, locale)} loading="lazy" style={{ position: 'absolute', inset: 0 }} />
                   <span className="cap">{t(s.name, locale)}<span style={{ display: 'block', fontSize: 13, fontWeight: 400, color: 'var(--line)', marginTop: 4 }}>{s.images.length} {d.projects.photos}</span></span>
@@ -142,7 +142,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
       {/* before / after */}
       {firstBa && (
         <section aria-label={d.ba.eyebrow} style={{ borderTop: '1px solid var(--line)' }}>
-          <div className="wrap col g28" style={{ padding: '100px 24px' }}>
+          <div className="wrap col g28 sp">
             <Reveal className="row between end">
               <div className="col g14">
                 <span className="eyebrow">{d.ba.eyebrow}</span>
@@ -160,7 +160,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
 
       {/* journey */}
       <section id="journey" className="bg-sand">
-        <div className="wrap col g40" style={{ padding: '100px 24px' }}>
+        <div className="wrap col g40 sp">
           <Reveal className="col g14">
             <span className="eyebrow">{d.journey.eyebrow}</span>
             <h2 className="h2">{d.journey.title}</h2>
@@ -181,8 +181,8 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
 
       {/* studio */}
       <section id="studio" style={{ borderTop: '1px solid var(--line)' }}>
-        <div className="wrap row center g56" style={{ padding: '100px 24px' }}>
-          <Reveal className="zoom" style={{ flex: '1 1 340px', minWidth: 0, height: 460 }}>
+        <div className="wrap row center g56 sp">
+          <Reveal className="zoom studio-img" style={{ flex: '1 1 340px', minWidth: 0, height: 460 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/images/0353.jpg" alt="MADE Design Studio" loading="lazy" />
           </Reveal>
@@ -204,7 +204,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
 
       {/* journal */}
       <section id="journal" className="bg-sand">
-        <div className="wrap col g40" style={{ padding: '100px 24px' }}>
+        <div className="wrap col g40 sp">
           <Reveal className="row between end">
             <div className="col g14">
               <span className="eyebrow">{d.blog.eyebrow}</span>

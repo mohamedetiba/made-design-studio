@@ -4,7 +4,7 @@ import type { Locale } from '@/lib/types';
 
 export default function Hero({ d, locale }: { d: Dict['hero']; locale: Locale }) {
   return (
-    <section id="top" className="wrap row center g40" style={{ padding: '72px 24px 56px' }}>
+    <section id="top" className="wrap row center g40 hero">
       <div className="rise col g28" style={{ flex: '1 1 420px', minWidth: 0 }}>
         <span className="eyebrow ltr" style={{ textAlign: locale === 'ar' ? 'right' : 'left' }}>{d.eyebrow}</span>
         <h1 className="h1">{d.title1}<br />{d.title2}</h1>
