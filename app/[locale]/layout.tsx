@@ -44,7 +44,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
     telephone: settings.phone,
     description: d.meta.description,
     address: { '@type': 'PostalAddress', addressLocality: 'Khobar', addressRegion: 'Eastern Province', addressCountry: 'SA', streetAddress: 'Al Rakah Al Janubiyah' },
-    areaServed: ['Khobar', 'Dammam', 'Dhahran', 'Eastern Province'],
+    areaServed: ['Khobar', 'Dhahran', 'Dammam', 'Al-Ahsa', 'Riyadh', 'Jeddah'],
     sameAs: settings.social.map((s) => s.url),
   };
   return (

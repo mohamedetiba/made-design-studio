@@ -11,7 +11,8 @@ const projectFields = groq`
   "slug": slug.current, name, sector, kind, scope, executed, featured, location, area, duration,
   brief, challenge, concept, result, seo{..., "ogImage": ogImage},
   cover{..., alt},
-  gallery[]{..., alt, stage, "space": space->slug.current}
+  gallery[]{..., alt, stage, "space": space->slug.current},
+  "videos": videos[]{ "src": asset->url, poster }
 `;
 
 const Q = {
@@ -22,7 +23,7 @@ const Q = {
   testimonials: groq`*[_type == "testimonial"] | order(order asc){ screenshot, quote, who, featured }`,
   posts: groq`*[_type == "post" && !(seo.noIndex == true)] | order(publishedAt desc){ "slug": slug.current, title, excerpt, mainImage, publishedAt, author, "category": category->title, seo }`,
   post: groq`*[_type == "post" && slug.current == $slug][0]{ "slug": slug.current, title, excerpt, mainImage, publishedAt, author, "category": category->title, body, faq, seo }`,
-  settings: groq`*[_type == "siteSettings"][0]`,
+  settings: groq`*[_type == "siteSettings"][0]{..., heroImage}`,
 };
 
 /* ------------------------------------------------------------------ */
@@ -34,7 +35,9 @@ const mapImg = (i: Any, fallbackAlt: L): Img => ({ src: urlFor(i), alt: i?.alt?.
 const mapProject = (p: Any): Project => ({
   ...p,
   cover: mapImg(p.cover, p.name),
-  gallery: (p.gallery || []).map((g: Any) => mapImg(g, p.name)),
+  // in-progress and "before" shots stay out of the showcase (before shots live in Before & After)
+  gallery: (p.gallery || []).filter((g: Any) => g.stage !== 'progress' && g.stage !== 'before').map((g: Any) => mapImg(g, p.name)),
+  videos: (p.videos || []).filter((v: Any) => v.src).map((v: Any) => ({ src: v.src, poster: v.poster?.asset ? urlFor(v.poster, 1600) : undefined })),
   seo: p.seo ? { ...p.seo, ogImage: p.seo.ogImage ? urlFor(p.seo.ogImage, 1200) : undefined } : undefined,
 });
 
@@ -97,6 +100,8 @@ export async function getSettings(): Promise<Settings> {
     whatsapp: s.whatsapp || SETTINGS.whatsapp,
     email: s.email,
     address: s.address?.ar ? s.address : SETTINGS.address,
+    mapUrl: s.mapUrl || SETTINGS.mapUrl,
+    heroImage: s.heroImage?.asset ? urlFor(s.heroImage, 2400) : undefined,
     social: s.social?.length ? s.social : SETTINGS.social,
     rates: { design: s.rateDesign ?? SETTINGS.rates.design, fitout: s.rateFitout ?? SETTINGS.rates.fitout, turnkey: s.rateTurnkey ?? SETTINGS.rates.turnkey },
   };

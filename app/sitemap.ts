@@ -13,6 +13,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     entry('', 1),
     entry('/projects', 0.9),
+    entry('/testimonials', 0.6),
+    entry('/about', 0.6),
     entry('/blog', 0.8),
     ...projects.filter((p) => !p.seo?.noIndex).map((p) => entry(`/projects/${p.slug}`, 0.7)),
     ...posts.filter((p) => !p.seo?.noIndex).map((p) => entry(`/blog/${p.slug}`, 0.7, p.publishedAt)),

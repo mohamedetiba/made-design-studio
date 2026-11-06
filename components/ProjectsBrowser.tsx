@@ -50,15 +50,9 @@ export default function ProjectsBrowser({ projects, spaces, ba, locale, d, dp, d
   }, [lb, imgs.length]);
 
   const tabs: Tab[] = ['projects', 'spaces', 'ba'];
-  const photos = projects.reduce((n, p) => n + p.gallery.length, 0);
 
   return (
     <>
-      <div className="wrap row stats" style={{ gap: 40, paddingBottom: 32 }}>
-        {[[projects.length, d.stats[0]], [photos, d.stats[1]], [projects.filter((p) => p.executed).length, d.stats[2]]].map(([n, l]) => (
-          <div key={String(l)} className="col g8"><span className="latin" style={{ fontSize: 40, fontWeight: 300 }}>{n}</span><span className="muted small">{l}</span></div>
-        ))}
-      </div>
 
       <div style={{ borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)', position: 'sticky', top: 'var(--hdr)', zIndex: 20, background: 'rgba(244,240,234,.95)', backdropFilter: 'blur(8px)' }}>
         <div className="wrap row tabs" role="tablist" style={{ gap: 0 }}>
@@ -88,11 +82,11 @@ export default function ProjectsBrowser({ projects, spaces, ba, locale, d, dp, d
       {tab === 'spaces' && cur && (
         <section className="wrap col g28" style={{ padding: '48px 24px 100px' }}>
           <div className="row chips" style={{ gap: 10 }}>
-            {spaces.map((s) => <button key={s.slug} type="button" className="chip" aria-pressed={space === s.slug} onClick={() => setSpace(s.slug)}>{t(s.name, locale)} <span className="latin" style={{ opacity: 0.6 }}>{s.images.length}</span></button>)}
+            {spaces.map((s) => <button key={s.slug} type="button" className="chip" aria-pressed={space === s.slug} onClick={() => setSpace(s.slug)}>{t(s.name, locale)}</button>)}
           </div>
           <div className="col g8">
             <h2 className="h2" style={{ fontSize: 36 }}>{t(cur.name, locale)}</h2>
-            <p className="lead" style={{ fontSize: 16 }}>{t(cur.intro, locale)} — {imgs.length} {d.from} {new Set(imgs.map((x) => x.project)).size} {d.projects}</p>
+            <p className="lead" style={{ fontSize: 16 }}>{t(cur.intro, locale)}</p>
           </div>
           <div style={{ columns: '3 280px', columnGap: 16 }}>
             {imgs.map((g, i) => (
@@ -127,7 +121,7 @@ export default function ProjectsBrowser({ projects, spaces, ba, locale, d, dp, d
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={imgs[lb].src} alt={t(imgs[lb].alt, locale)} style={{ maxHeight: '78vh', objectFit: 'contain' }} />
             <figcaption style={{ color: 'var(--line)', fontSize: 14 }}>
-              <Link href={`/${locale}/projects/${imgs[lb].project}`} style={{ color: 'var(--ivory)' }}>{t(imgs[lb].projectName, locale)}</Link> · {lb + 1}/{imgs.length}
+              <Link href={`/${locale}/projects/${imgs[lb].project}`} style={{ color: 'var(--ivory)' }}>{t(imgs[lb].projectName, locale)}</Link>
             </figcaption>
           </figure>
           <button type="button" className="icon-btn" onClick={() => setLb((lb + 1) % imgs.length)} aria-label="next">›</button>

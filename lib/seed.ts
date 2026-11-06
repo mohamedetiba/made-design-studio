@@ -10,11 +10,11 @@ const img = (n: number | string) => `/images/${typeof n === 'number' ? String(n)
 type RawProject = Omit<Project, 'cover' | 'gallery'> & { cover: number; imgs: number[] };
 
 export const RAW_PROJECTS: RawProject[] = [
-  { slug: 'almoosa-north-tower', name: { ar: 'مستشفى الموسى التخصصي — البرج الشمالي', en: 'Al Moosa Specialist Hospital — North Tower' }, sector: 'medical', kind: { ar: 'منشأة طبية', en: 'Healthcare' }, scope: { ar: 'تصميم وتنفيذ — مكاتب إدارية، نادي رياضي، كافيه، غرف مرضى', en: 'Design & fit-out — admin offices, staff gym, café and patient rooms' }, executed: true, featured: true, cover: 254, imgs: [254,266,256,257,277,262,263,271,272,261,250,264,282,286,310,307,283,288,317,320] },
+  { slug: 'almoosa-north-tower', name: { ar: 'مستشفى الموسى التخصصي — البرج الشمالي', en: 'Al Moosa Specialist Hospital — North Tower' }, sector: 'medical', kind: { ar: 'منشأة طبية', en: 'Healthcare' }, scope: { ar: 'تصميم داخلي — مكاتب إدارية، نادي رياضي، كافيه، غرف مرضى', en: 'Interior design — admin offices, staff gym, café and patient rooms' }, executed: true, featured: true, cover: 254, imgs: [254,266,256,257,277,262,263,271,272,261,250,264,282,286,310,307,283,288,317,320] },
   { slug: 'rehab-hospital', name: { ar: 'مستشفى التأهيل — Rehab', en: 'Rehab Hospital' }, sector: 'medical', kind: { ar: 'منشأة طبية', en: 'Healthcare' }, scope: { ar: 'الجناح الملكي، مصلى، صالة أطفال، علاج طبيعي، صيدلية، مكاتب', en: 'Royal suite, prayer zone, pediatric gym, physiotherapy, pharmacy and offices' }, executed: true, featured: true, cover: 64, imgs: [64,58,52,54,61,69,72,91,96,106,107,102,118,87,73,113,99,119] },
   { slug: 'phc-nakheel', name: { ar: 'مركز الرعاية الصحية الأولية — النخيل', en: 'Primary Health Care — Nakheel' }, sector: 'medical', kind: { ar: 'منشأة طبية', en: 'Healthcare' }, scope: { ar: 'استقبال، عيادات، أشعة، أطفال، طوارئ، واجهات', en: 'Reception, clinics, radiology, pediatrics, urgent care and façades' }, executed: false, featured: true, cover: 139, imgs: [139,144,148,149,156,164,169,170,163,145,154,178,133,134,137,140] },
   { slug: 'quiet-guest-villa', name: { ar: 'فيلا الضيافة الهادئة', en: 'The Quiet Guest Villa' }, sector: 'residential', kind: { ar: 'فيلا سكنية', en: 'Private villa' }, scope: { ar: 'مجالس الضيوف، المعيشة، الماستر، غرف الأبناء', en: 'Guest majlis, family living, master suite and children’s rooms' }, executed: false, featured: true, cover: 370, imgs: [370,361,362,365,366,373,376,378,354,353,355,380,384,392,391,398,371,372] },
-  { slug: 'misk-villa', name: { ar: 'فيلا مسك', en: 'Misk Villa' }, sector: 'residential', kind: { ar: 'فيلا سكنية', en: 'Private villa' }, scope: { ar: 'تشطيب وتأثيث تسليم مفتاح', en: 'Turnkey finishing and furnishing' }, executed: true, featured: true, cover: 190, imgs: [190,192,194,197,198,199,200,201,188,189] },
+  { slug: 'misk-villa', name: { ar: 'فيلا مسك', en: 'Misk Villa' }, sector: 'residential', kind: { ar: 'فيلا سكنية', en: 'Private villa' }, scope: { ar: 'تشطيب وتأثيث تسليم مفتاح', en: 'Turnkey finishing and furnishing' }, executed: true, cover: 190, imgs: [190,192,194,197,198,199,200,201,188,189] },
   { slug: 'warm-rattan-home', name: { ar: 'شقة الراتان الدافئة', en: 'The Warm Rattan Home' }, sector: 'residential', kind: { ar: 'شقة سكنية', en: 'Apartment' }, scope: { ar: 'تصميم وتنفيذ وأثاث مفصّل وإضاءة', en: 'Design, fit-out, custom furniture and lighting' }, executed: true, featured: true, cover: 334, imgs: [334,340,331,332,339,344,329,338,327,326,325,343,345,346] },
   { slug: 'barista-store', name: { ar: 'متجر باريستا', en: 'Barista Store' }, sector: 'commercial', kind: { ar: 'تجزئة ومقاهي', en: 'Retail & café' }, scope: { ar: 'تصميم وتنفيذ متجر قهوة', en: 'Design and fit-out of a coffee store' }, executed: true, featured: true, cover: 246, imgs: [246,243,244,242,248,249,245,247,240] },
   { slug: 'serene-blue-villa', name: { ar: 'فيلا الأزرق الهادئ', en: 'The Serene Blue Villa' }, sector: 'residential', kind: { ar: 'فيلا سكنية', en: 'Private villa' }, scope: { ar: 'المجلس والمدخل والسفرة', en: 'Majlis, entrance and dining' }, executed: false, cover: 228, imgs: [228,230,232,234,237,238,239,229] },
@@ -25,7 +25,7 @@ export const RAW_PROJECTS: RawProject[] = [
   { slug: 'chandelier-villa', name: { ar: 'فيلا الثريا', en: 'The Chandelier Villa' }, sector: 'residential', kind: { ar: 'فيلا سكنية', en: 'Private villa' }, scope: { ar: 'تصميم وتنفيذ', en: 'Design and fit-out' }, executed: true, cover: 38, imgs: [38,39,40,45,46,42,43] },
   { slug: 'youthful-workspace', name: { ar: 'مكتب الطاقة الشبابية', en: 'Youthful Workspace' }, sector: 'commercial', kind: { ar: 'مكاتب', en: 'Office' }, scope: { ar: 'تجديد مكتب مع غرف راحة', en: 'Office renovation with rest pods' }, executed: true, cover: 33, imgs: [33,34,32,37,35,36,29] },
   { slug: 'warm-wood-villa', name: { ar: 'فيلا الخشب الهادئ', en: 'The Warm Wood Villa' }, sector: 'residential', kind: { ar: 'فيلا سكنية', en: 'Private villa' }, scope: { ar: 'من العظم إلى التصميم النهائي', en: 'From shell to final design' }, executed: false, cover: 11, imgs: [11,12,13,16,27,15,9] },
-  { slug: 'sada-project', name: { ar: 'مشروع سدى', en: 'Sada Project' }, sector: 'residential', kind: { ar: 'سكني', en: 'Residential' }, scope: { ar: 'تأثيث وتنسيق', en: 'Furnishing and styling' }, executed: true, cover: 5, imgs: [5,8,24,56] },
+  { slug: 'sada-project', name: { ar: 'مشروع سدى', en: 'Suda Project' }, sector: 'residential', kind: { ar: 'سكني', en: 'Residential' }, scope: { ar: 'تأثيث وتنسيق', en: 'Furnishing and styling' }, executed: true, cover: 5, imgs: [5,8,24,56] },
   { slug: 'riyadh-villa', name: { ar: 'فيلا الرياض', en: 'Riyadh Villa' }, sector: 'residential', kind: { ar: 'فيلا سكنية', en: 'Private villa' }, scope: { ar: 'تشطيب وتأثيث', en: 'Finishing and furnishing' }, executed: true, cover: 47, imgs: [47,49,48] },
   { slug: 'nlc-hall', name: { ar: 'قاعة NLC', en: 'NLC Hall' }, sector: 'commercial', kind: { ar: 'ضيافة', en: 'Hospitality' }, scope: { ar: 'تصميم قاعة مطعم وفعاليات', en: 'Restaurant and events hall design' }, executed: false, cover: 206, imgs: [206,204] },
 ];
@@ -59,7 +59,7 @@ const mkImg = (p: RawProject, n: number): Img => {
 export const PROJECTS: Project[] = RAW_PROJECTS.map((p) => ({
   ...p,
   cover: mkImg(p, p.cover),
-  gallery: p.imgs.map((n) => mkImg(p, n)),
+  gallery: p.imgs.map((n) => mkImg(p, n)).filter((g) => g.stage !== 'progress' && g.stage !== 'before'),
 }));
 
 export const SPACES: Space[] = RAW_SPACES.map((s) => ({
@@ -74,12 +74,9 @@ export const SPACES: Space[] = RAW_SPACES.map((s) => ({
 }));
 
 export const BEFORE_AFTER: BeforeAfter[] = [
-  { project: 'classic-view-villa', label: { ar: 'صالة المعيشة', en: 'Living room' }, before: img(21), after: img(30) },
   { project: 'classic-view-villa', label: { ar: 'السفرة', en: 'Dining' }, before: img(19), after: img(25) },
-  { project: 'misk-villa', label: { ar: 'صالة المعيشة', en: 'Living room' }, before: img(188), after: img(190) },
   { project: 'love-and-more-dewaniya', label: { ar: 'الديوانية', en: 'Dewaniya' }, before: img(218), after: img(222) },
   { project: 'barista-store', label: { ar: 'واجهة المتجر', en: 'Storefront' }, before: img(240), after: img(246) },
-  { project: 'youthful-workspace', label: { ar: 'المكتب', en: 'Office' }, before: img(35), after: img(33) },
 ].map((b) => ({ ...b, projectName: RAW_PROJECTS.find((p) => p.slug === b.project)!.name }));
 
 export const TESTIMONIALS: Testimonial[] = [
@@ -162,6 +159,7 @@ export const SETTINGS: Settings = {
   phone: '+966 56 843 4230',
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '966568434230',
   address: { ar: 'الخُبر — حي الراكة الجنوبية، المنطقة الشرقية', en: 'Al Rakah Al Janubiyah, Khobar, Eastern Province' },
+  mapUrl: 'https://www.google.com/maps/search/?api=1&query=MADE+Design+Studio+Al+Rakah+Al+Janubiyah+Khobar',
   social: [
     { label: 'Instagram', url: 'https://www.instagram.com/made.design.co/' },
     { label: 'TikTok', url: 'https://www.tiktok.com/@made.design.co' },

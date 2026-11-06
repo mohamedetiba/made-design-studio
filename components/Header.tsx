@@ -10,8 +10,9 @@ export default function Header({ locale, settings }: { locale: Locale; settings:
   const items = [
     { href: `${l}#services`, label: d.services },
     { href: `${l}/projects`, label: d.projects },
-    { href: `${l}#journey`, label: d.journey },
-    { href: `${l}#studio`, label: d.studio },
+    { href: `${l}/projects?tab=ba`, label: d.ba },
+    { href: `${l}/testimonials`, label: d.reviews },
+    { href: `${l}/about`, label: d.studio },
     { href: `${l}/blog`, label: d.blog },
   ];
   return (
@@ -25,7 +26,7 @@ export default function Header({ locale, settings }: { locale: Locale; settings:
           <div className="nav-links">
             {items.map((it) => <Link key={it.href} href={it.href}>{it.label}</Link>)}
             <LangSwitch locale={locale} label={d.other} />
-            <a className="btn btn-dark" style={{ minHeight: 44, padding: '10px 20px', fontSize: 15 }} href={`https://wa.me/${settings.whatsapp}`} target="_blank" rel="noopener">{d.start}</a>
+            <a className="btn btn-dark" style={{ minHeight: 44, padding: '10px 20px', fontSize: 15 }} href={`${l}#estimate`}>{d.start}</a>
           </div>
           <MobileMenu items={items} locale={locale} langLabel={d.other} cta={d.start} wa={settings.whatsapp} />
         </nav>

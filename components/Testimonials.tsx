@@ -58,7 +58,7 @@ export default function Testimonials({ items, locale, d }: { items: Testimonial[
               <button key={i} type="button" onClick={() => go(i)} aria-label={`${i + 1}`} aria-pressed={i === a}
                 style={{ width: 44, height: 44, border: 0, cursor: 'pointer', background: `linear-gradient(${i === a ? '#1C1A17,#1C1A17' : '#B9A994,#B9A994'}) center/${i === a ? '30px' : '10px'} 8px no-repeat`, transition: 'background-size .4s' }} />
             ))}
-            <span className="latin muted small ltr" style={{ marginInlineStart: 'auto' }}>{a + 1} / {n}</span>
+
           </div>
           <p className="muted small" style={{ margin: 0, lineHeight: 1.8 }}>{d.note}</p>
         </div>
@@ -75,7 +75,6 @@ export default function Testimonials({ items, locale, d }: { items: Testimonial[
 
       <div className="col g20" style={{ paddingBottom: 100 }}>
         <div className="wrap row between" style={{ width: '100%' }}>
-          <strong style={{ fontSize: 18 }}>{items.length} {d.count}</strong>
           <span className="muted small">{d.hint}</span>
         </div>
         {rows.map((row, r) => (

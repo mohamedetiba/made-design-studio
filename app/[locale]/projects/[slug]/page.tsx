@@ -52,7 +52,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ locale
         <Link href={`/${locale}/projects`} className="muted small">{d.detail.back}</Link>
         <h1 className="h1" style={{ fontSize: 'clamp(34px,4.4vw,58px)' }}>{name}</h1>
         <dl className="row" style={{ gap: 40, margin: 0 }}>
-          {[[d.detail.kind, t(p.kind, locale)], [d.detail.scope, t(p.scope, locale)], [d.detail.photos, `${p.gallery.length} · ${p.executed ? d.detail.real : d.detail.render}`]].map(([k, v]) => (
+          {[[d.detail.kind, t(p.kind, locale)], [d.detail.scope, t(p.scope, locale)], [d.detail.photos, [p.gallery.some((g) => g.stage === 'after') && d.detail.real, p.gallery.some((g) => g.stage !== 'after') && d.detail.render].filter(Boolean).join(' · ')]].map(([k, v]) => (
             <div key={k} className="col g8"><dt className="muted small">{k}</dt><dd style={{ margin: 0, fontSize: 17 }}>{v}</dd></div>
           ))}
         </dl>
@@ -68,9 +68,23 @@ export default async function ProjectPage({ params }: { params: Promise<{ locale
           {story.map((s, k) => <p key={k} className="lead" style={{ maxWidth: 'none' }}>{t(s, locale)}</p>)}
         </section>
       )}
-      <section className="wrap" style={{ padding: '56px 24px' }}>
-        <Gallery images={p.gallery} locale={locale} />
-      </section>
+      {!!p.videos?.length && (
+        <section className="wrap col g20" style={{ padding: '56px 24px 0' }}>
+          <h2 className="h2" style={{ fontSize: 24 }}>{d.detail.video}</h2>
+          <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,420px),1fr))', gap: 16 }}>
+            {p.videos.map((v) => <video key={v.src} src={v.src} poster={v.poster} controls playsInline preload="metadata" style={{ width: '100%', background: 'var(--ink)', aspectRatio: '16/9', objectFit: 'cover' }} />)}
+          </div>
+        </section>
+      )}
+      {[{ k: 'after', label: d.detail.real, imgs: p.gallery.filter((g) => g.stage === 'after') }, { k: 'render', label: d.detail.render, imgs: p.gallery.filter((g) => g.stage !== 'after') }]
+        .filter((grp) => grp.imgs.length)
+        .map((grp, _i, all) => (
+          <section key={grp.k} className="wrap col g20" style={{ padding: '56px 24px 0' }}>
+            {all.length > 1 && <h2 className="h2" style={{ fontSize: 24 }}>{grp.label}</h2>}
+            <Gallery images={grp.imgs} locale={locale} />
+          </section>
+        ))}
+      <div style={{ height: 56 }} />
       <section className="bg-ink">
         <div className="wrap row between center" style={{ padding: '56px 24px' }}>
           <p style={{ margin: 0, fontFamily: 'var(--serif)', fontSize: 'clamp(22px,2.4vw,32px)', lineHeight: 1.6, maxWidth: 680 }}>{d.detail.cta}</p>

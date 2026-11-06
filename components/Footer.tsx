@@ -15,7 +15,7 @@ export default function Footer({ locale, settings }: { locale: Locale; settings:
           </div>
           <div className="col g8" style={{ fontSize: 15 }}>
             <strong style={{ color: 'var(--ivory)' }}>{d.studio}</strong>
-            <span>{t(settings.address, locale)}</span>
+            {settings.mapUrl ? <a href={settings.mapUrl} target="_blank" rel="noopener">{t(settings.address, locale)} ↗</a> : <span>{t(settings.address, locale)}</span>}
             <a href={`tel:+${settings.whatsapp}`} className="ltr">{settings.phone}</a>
             <a href={`https://wa.me/${settings.whatsapp}`} target="_blank" rel="noopener">WhatsApp</a>
             {settings.email && <a href={`mailto:${settings.email}`}>{settings.email}</a>}
@@ -28,6 +28,9 @@ export default function Footer({ locale, settings }: { locale: Locale; settings:
           </div>
           <div className="col g8" style={{ fontSize: 15 }}>
             <Link href={`/${locale}/projects`}>{getDict(locale).nav.projects}</Link>
+            <Link href={`/${locale}/projects?tab=ba`}>{getDict(locale).nav.ba}</Link>
+            <Link href={`/${locale}/testimonials`}>{getDict(locale).nav.reviews}</Link>
+            <Link href={`/${locale}/about`}>{getDict(locale).nav.studio}</Link>
             <Link href={`/${locale}/blog`}>{getDict(locale).nav.blog}</Link>
           </div>
         </div>

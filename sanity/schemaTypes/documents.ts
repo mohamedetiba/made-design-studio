@@ -46,6 +46,10 @@ export const project = defineType({
       })],
       options: { layout: 'grid' },
     }),
+    defineField({
+      name: 'videos', title: 'فيديوهات المشروع', description: 'MP4 مضغوط (يفضّل أقل من 40 ميجا لكل فيديو). تظهر أعلى معرض الصور.', type: 'array', group: 'media',
+      of: [defineArrayMember({ type: 'file', options: { accept: 'video/mp4,video/webm,video/quicktime' }, fields: [defineField({ name: 'poster', title: 'صورة الغلاف', type: 'image' })] })],
+    }),
     defineField({ name: 'seo', title: 'SEO', type: 'seo', group: 'seo' }),
   ],
   orderings: [{ title: 'الترتيب', name: 'orderAsc', by: [{ field: 'order', direction: 'asc' }] }],
@@ -171,6 +175,7 @@ export const siteSettings = defineType({
     { name: 'seo', title: 'SEO الافتراضي' },
   ],
   fields: [
+    defineField({ name: 'heroImage', title: 'صورة الواجهة الرئيسية (Hero)', description: 'صورة من مشاريعكم تظهر بالشاشة كاملة أول ما يفتح الموقع. يفضّل عرضية 2400×1350 على الأقل.', type: 'image', options: { hotspot: true }, group: 'contact' }),
     defineField({ name: 'phone', title: 'رقم الهاتف', type: 'string', group: 'contact', initialValue: '+966 56 843 4230' }),
     defineField({ name: 'whatsapp', title: 'رقم الواتساب (بدون +)', type: 'string', group: 'contact', initialValue: '966568434230' }),
     defineField({ name: 'email', title: 'البريد', type: 'string', group: 'contact' }),

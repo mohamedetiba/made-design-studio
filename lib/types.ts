@@ -20,6 +20,7 @@ export type Project = {
   result?: L;
   cover: Img;
   gallery: Img[];
+  videos?: { src: string; poster?: string }[];
   seo?: Seo;
 };
 
@@ -54,6 +55,8 @@ export type Settings = {
   whatsapp: string;
   email?: string;
   address: L;
+  mapUrl?: string;
+  heroImage?: string;
   social: { label: string; url: string }[];
   rates: { design: number; fitout: number; turnkey: number };
 };
