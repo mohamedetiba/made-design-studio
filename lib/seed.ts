@@ -165,7 +165,7 @@ export const SETTINGS: Settings = {
     'https://www.instagram.com/reel/DaDkzbCIXpX/',
     'https://www.instagram.com/reel/DYElBAuo9Tv/',
   ],
-  mapUrl: 'https://www.google.com/maps/search/?api=1&query=MADE+Design+Studio+Al+Rakah+Al+Janubiyah+Khobar',
+  mapUrl: 'https://www.google.com/maps/search/?api=1&query=Made%20Design%20Studio%20Al%20Khobar&query_place_id=ChIJBTPeBRzpST4RZLcMh5NUUG8',
   social: [
     { label: 'Instagram', url: 'https://www.instagram.com/made.design.co/' },
     { label: 'TikTok', url: 'https://www.tiktok.com/@made.design.co' },
