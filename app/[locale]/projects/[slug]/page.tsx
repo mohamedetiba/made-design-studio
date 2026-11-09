@@ -72,7 +72,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ locale
         <section className="wrap col g20" style={{ padding: '56px 24px 0' }}>
           <h2 className="h2" style={{ fontSize: 24 }}>{d.detail.video}</h2>
           <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,420px),1fr))', gap: 16 }}>
-            {p.videos.map((v) => <video key={v.src} src={v.src} poster={v.poster} controls playsInline preload="metadata" style={{ width: '100%', background: 'var(--ink)', aspectRatio: '16/9', objectFit: 'cover' }} />)}
+            {p.videos.map((v) => <video key={v.src} src={v.src} poster={v.poster} controls playsInline preload="metadata" style={{ width: '100%', maxHeight: '80vh', background: 'var(--ink)', objectFit: 'contain' }} />)}
           </div>
         </section>
       )}
