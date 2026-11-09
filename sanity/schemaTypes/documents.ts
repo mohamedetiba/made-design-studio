@@ -80,6 +80,7 @@ export const beforeAfter = defineType({
   fields: [
     defineField({ name: 'project', title: 'المشروع', type: 'reference', to: [{ type: 'project' }], validation: (r) => r.required() }),
     defineField({ name: 'label', title: 'المساحة', type: 'localeString' }),
+    defineField({ name: 'mode', title: 'نوع المقارنة', type: 'string', initialValue: 'renovation', options: { list: [{ title: 'قبل / بعد التجديد', value: 'renovation' }, { title: 'تصميم 3D / الواقع بعد التنفيذ', value: 'design' }], layout: 'radio' } }),
     defineField({ name: 'before', title: 'قبل', type: 'image', validation: (r) => r.required() }),
     defineField({ name: 'after', title: 'بعد', type: 'image', validation: (r) => r.required() }),
     defineField({ name: 'featured', title: 'يظهر في الرئيسية', type: 'boolean', initialValue: false }),
@@ -175,6 +176,7 @@ export const siteSettings = defineType({
     { name: 'seo', title: 'SEO الافتراضي' },
   ],
   fields: [
+    defineField({ name: 'reels', title: 'فيديوهات إنستجرام (روابط Reels)', description: 'الصق رابط كل Reel — تظهر في تبويب الفيديوهات بصفحة المشاريع.', type: 'array', of: [{ type: 'url' }], group: 'contact' }),
     defineField({ name: 'heroImage', title: 'صورة الواجهة الرئيسية (Hero)', description: 'صورة من مشاريعكم تظهر بالشاشة كاملة أول ما يفتح الموقع. يفضّل عرضية 2400×1350 على الأقل.', type: 'image', options: { hotspot: true }, group: 'contact' }),
     defineField({ name: 'phone', title: 'رقم الهاتف', type: 'string', group: 'contact', initialValue: '+966 56 843 4230' }),
     defineField({ name: 'whatsapp', title: 'رقم الواتساب (بدون +)', type: 'string', group: 'contact', initialValue: '966568434230' }),

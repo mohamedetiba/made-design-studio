@@ -26,7 +26,7 @@ export type Project = {
 
 export type Space = { slug: string; name: L; intro?: L; cover?: string; images: (Img & { project: string; projectName: L })[] };
 
-export type BeforeAfter = { project: string; projectName: L; label: L; before: string; after: string };
+export type BeforeAfter = { project: string; projectName: L; label: L; before: string; after: string; mode?: 'renovation' | 'design' };
 
 export type Testimonial = { screenshot: string; quote?: L; who: L; featured: boolean };
 
@@ -57,6 +57,7 @@ export type Settings = {
   address: L;
   mapUrl?: string;
   heroImage?: string;
+  reels?: string[];
   social: { label: string; url: string }[];
   rates: { design: number; fitout: number; turnkey: number };
 };

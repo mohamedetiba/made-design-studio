@@ -19,7 +19,7 @@ const Q = {
   projects: groq`*[_type == "project"] | order(order asc, _createdAt desc){ ${projectFields} }`,
   project: groq`*[_type == "project" && slug.current == $slug][0]{ ${projectFields} }`,
   spaces: groq`*[_type == "space"] | order(order asc){ "slug": slug.current, name, intro, cover }`,
-  beforeAfter: groq`*[_type == "beforeAfter"] | order(order asc){ label, before, after, "project": project->slug.current, "projectName": project->name }`,
+  beforeAfter: groq`*[_type == "beforeAfter"] | order(order asc){ label, mode, before, after, "project": project->slug.current, "projectName": project->name }`,
   testimonials: groq`*[_type == "testimonial"] | order(order asc){ screenshot, quote, who, featured }`,
   posts: groq`*[_type == "post" && !(seo.noIndex == true)] | order(publishedAt desc){ "slug": slug.current, title, excerpt, mainImage, publishedAt, author, "category": category->title, seo }`,
   post: groq`*[_type == "post" && slug.current == $slug][0]{ "slug": slug.current, title, excerpt, mainImage, publishedAt, author, "category": category->title, body, faq, seo }`,
@@ -102,6 +102,7 @@ export async function getSettings(): Promise<Settings> {
     address: s.address?.ar ? s.address : SETTINGS.address,
     mapUrl: s.mapUrl || SETTINGS.mapUrl,
     heroImage: s.heroImage?.asset ? urlFor(s.heroImage, 2400) : undefined,
+    reels: s.reels?.length ? s.reels : SETTINGS.reels,
     social: s.social?.length ? s.social : SETTINGS.social,
     rates: { design: s.rateDesign ?? SETTINGS.rates.design, fitout: s.rateFitout ?? SETTINGS.rates.fitout, turnkey: s.rateTurnkey ?? SETTINGS.rates.turnkey },
   };

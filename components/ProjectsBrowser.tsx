@@ -7,11 +7,11 @@ import ProjectCard from './ProjectCard';
 import BeforeAfterSlider from './BeforeAfterSlider';
 import Link from 'next/link';
 
-type Tab = 'projects' | 'spaces' | 'ba';
+type Tab = 'projects' | 'spaces' | 'ba' | 'videos';
 const SECTORS = ['all', 'residential', 'commercial', 'medical'] as const;
 
-export default function ProjectsBrowser({ projects, spaces, ba, locale, d, dp, dba, initialTab = 'projects', initialSpace }: {
-  projects: Project[]; spaces: Space[]; ba: BeforeAfter[]; locale: Locale; d: Dict['pj']; dp: Dict['projects']; dba: Dict['ba']; initialTab?: Tab; initialSpace?: string;
+export default function ProjectsBrowser({ projects, spaces, ba, locale, d, dp, dba, initialTab = 'projects', initialSpace, reels = [] }: {
+  projects: Project[]; spaces: Space[]; ba: BeforeAfter[]; locale: Locale; d: Dict['pj']; dp: Dict['projects']; dba: Dict['ba']; initialTab?: Tab; initialSpace?: string; reels?: string[];
 }) {
   const [tab, setTab] = useState<Tab>(initialTab);
   const [sector, setSector] = useState<(typeof SECTORS)[number]>('all');
@@ -27,7 +27,7 @@ export default function ProjectsBrowser({ projects, spaces, ba, locale, d, dp, d
     const q = new URLSearchParams(window.location.search);
     const s = q.get('space');
     if (s && spaces.some((x) => x.slug === s)) { setSpace(s); setTab('spaces'); }
-    else if (q.get('tab') === 'ba' || q.get('tab') === 'spaces') setTab(q.get('tab') as Tab);
+    else if (['ba', 'spaces', 'videos'].includes(q.get('tab') || '')) setTab(q.get('tab') as Tab);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -49,7 +49,7 @@ export default function ProjectsBrowser({ projects, spaces, ba, locale, d, dp, d
     return () => window.removeEventListener('keydown', k);
   }, [lb, imgs.length]);
 
-  const tabs: Tab[] = ['projects', 'spaces', 'ba'];
+  const tabs: Tab[] = reels.length ? ['projects', 'spaces', 'ba', 'videos'] : ['projects', 'spaces', 'ba'];
 
   return (
     <>
@@ -104,13 +104,25 @@ export default function ProjectsBrowser({ projects, spaces, ba, locale, d, dp, d
           <p className="lead" style={{ fontSize: 16 }}>{d.drag}</p>
           {ba.map((b) => (
             <div key={b.before} className="col g14">
-              <BeforeAfterSlider before={b.before} after={b.after} labels={[dba.before, dba.after]} aria={`${t(b.projectName, locale)} ${dba.before} / ${dba.after}`} />
+              <BeforeAfterSlider before={b.before} after={b.after} labels={b.mode === 'design' ? [dba.design, dba.real] : [dba.before, dba.after]} aria={`${t(b.projectName, locale)} ${dba.before} / ${dba.after}`} />
               <div className="row between center">
                 <span style={{ fontWeight: 600 }}>{t(b.projectName, locale)} — <span className="muted" style={{ fontWeight: 400 }}>{t(b.label, locale)}</span></span>
                 <Link href={`/${locale}/projects/${b.project}`}>{d.open}</Link>
               </div>
             </div>
           ))}
+        </section>
+      )}
+
+      {tab === 'videos' && (
+        <section className="wrap col g28" style={{ padding: '48px 24px 100px' }}>
+          <p className="lead" style={{ fontSize: 16 }}>{d.videos}</p>
+          <div className="reels">
+            {reels.map((u) => {
+              const id = u.match(/\/(?:reel|p)\/([^/?#]+)/)?.[1];
+              return id ? <iframe key={id} src={`https://www.instagram.com/reel/${id}/embed`} title="Instagram reel" loading="lazy" allowFullScreen scrolling="no" /> : null;
+            })}
+          </div>
         </section>
       )}
 

@@ -3,11 +3,14 @@ import type { Dict } from '@/lib/i18n';
 import type { Locale } from '@/lib/types';
 
 /** Full-screen project image with the introduction laid over it. */
-export default function Hero({ d, locale, image, alt }: { d: Dict['hero']; locale: Locale; image: string; alt: string }) {
+export default function Hero({ d, locale, image, mobile, alt }: { d: Dict['hero']; locale: Locale; image: string; mobile?: string; alt: string }) {
   return (
     <section id="top" className="hero-full">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="hero-bg" src={image} alt={alt} fetchPriority="high" />
+      <picture>
+        {mobile && <source media="(max-width: 720px)" srcSet={mobile} />}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="hero-bg" src={image} alt={alt} fetchPriority="high" />
+      </picture>
       <div className="hero-shade" aria-hidden="true" />
       <div className="wrap hero-inner">
         <div className="rise col g20" style={{ maxWidth: 620 }}>

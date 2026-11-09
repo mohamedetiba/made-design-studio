@@ -76,6 +76,10 @@ button{font-family:inherit}
 .circle .nm{font-size:16px;font-weight:600;line-height:1.5}
 .circle .kd{font-size:13px;color:var(--brown)}
 
+/* instagram reels */
+.reels{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:20px}
+.reels iframe{width:100%;aspect-ratio:9/16;min-height:560px;border:1px solid var(--line);background:#fff}
+
 /* quote form */
 .est-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .field{display:flex;flex-direction:column;gap:8px;font-weight:600;font-size:15px}

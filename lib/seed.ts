@@ -23,7 +23,7 @@ export const RAW_PROJECTS: RawProject[] = [
   { slug: 'stone-wood-villa', name: { ar: 'فيلا الحجر والخشب', en: 'Stone & Wood Villa' }, sector: 'residential', kind: { ar: 'فيلا سكنية', en: 'Private villa' }, scope: { ar: 'الدور الأرضي والأول بالكامل', en: 'Complete ground and first floors' }, executed: false, cover: 207, imgs: [207,208,213,212,214,216,217,205,209,211] },
   { slug: 'love-and-more-dewaniya', name: { ar: 'ديوانية Love & More', en: 'Love & More Dewaniya' }, sector: 'commercial', kind: { ar: 'ضيافة', en: 'Hospitality' }, scope: { ar: 'تجديد ديوانية: قبل / بعد', en: 'Dewaniya renovation: before and after' }, executed: true, cover: 222, imgs: [222,221,223,220,225,226,227,218,219] },
   { slug: 'chandelier-villa', name: { ar: 'فيلا الثريا', en: 'The Chandelier Villa' }, sector: 'residential', kind: { ar: 'فيلا سكنية', en: 'Private villa' }, scope: { ar: 'تصميم وتنفيذ', en: 'Design and fit-out' }, executed: true, cover: 38, imgs: [38,39,40,45,46,42,43] },
-  { slug: 'youthful-workspace', name: { ar: 'مكتب الطاقة الشبابية', en: 'Youthful Workspace' }, sector: 'commercial', kind: { ar: 'مكاتب', en: 'Office' }, scope: { ar: 'تجديد مكتب مع غرف راحة', en: 'Office renovation with rest pods' }, executed: true, cover: 33, imgs: [33,34,32,37,35,36,29] },
+  { slug: 'youthful-workspace', name: { ar: 'شركة صحصح', en: 'Sahsah Co.' }, sector: 'commercial', kind: { ar: 'مكاتب', en: 'Office' }, scope: { ar: 'تجديد مكتب مع غرف راحة', en: 'Office renovation with rest pods' }, executed: true, cover: 33, imgs: [33,34,32,37,35,36,29] },
   { slug: 'warm-wood-villa', name: { ar: 'فيلا الخشب الهادئ', en: 'The Warm Wood Villa' }, sector: 'residential', kind: { ar: 'فيلا سكنية', en: 'Private villa' }, scope: { ar: 'من العظم إلى التصميم النهائي', en: 'From shell to final design' }, executed: false, cover: 11, imgs: [11,12,13,16,27,15,9] },
   { slug: 'sada-project', name: { ar: 'مشروع سدى', en: 'Suda Project' }, sector: 'residential', kind: { ar: 'سكني', en: 'Residential' }, scope: { ar: 'تأثيث وتنسيق', en: 'Furnishing and styling' }, executed: true, cover: 5, imgs: [5,8,24,56] },
   { slug: 'riyadh-villa', name: { ar: 'فيلا الرياض', en: 'Riyadh Villa' }, sector: 'residential', kind: { ar: 'فيلا سكنية', en: 'Private villa' }, scope: { ar: 'تشطيب وتأثيث', en: 'Finishing and furnishing' }, executed: true, cover: 47, imgs: [47,49,48] },
@@ -159,6 +159,12 @@ export const SETTINGS: Settings = {
   phone: '+966 56 843 4230',
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '966568434230',
   address: { ar: 'الخُبر — حي الراكة الجنوبية، المنطقة الشرقية', en: 'Al Rakah Al Janubiyah, Khobar, Eastern Province' },
+  reels: [
+    'https://www.instagram.com/reel/DetPyhYIv8t/',
+    'https://www.instagram.com/reel/DaPo2cJocPg/',
+    'https://www.instagram.com/reel/DaDkzbCIXpX/',
+    'https://www.instagram.com/reel/DYElBAuo9Tv/',
+  ],
   mapUrl: 'https://www.google.com/maps/search/?api=1&query=MADE+Design+Studio+Al+Rakah+Al+Janubiyah+Khobar',
   social: [
     { label: 'Instagram', url: 'https://www.instagram.com/made.design.co/' },
