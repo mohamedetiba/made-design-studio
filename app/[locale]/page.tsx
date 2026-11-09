@@ -16,7 +16,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
 
   return (
     <>
-      <Hero d={d.hero} locale={locale} image={settings.heroImage || '/media/hero/hero-wide.jpg'} mobile={settings.heroImage ? undefined : '/media/hero/hero-01.jpg'} alt={settings.heroImage ? t(heroPic.alt, locale) : (locale === 'ar' ? 'بهو منشأة صحية من تنفيذ MADE' : 'Healthcare lobby by MADE')} />
+      <Hero d={d.hero} locale={locale} image={settings.heroImage || '/media/hero/hero-wide.jpg'} mobile={settings.heroImage ? undefined : '/media/hero/hero-01.jpg'} alt={settings.heroImage ? t(heroPic.alt, locale) : (locale === 'ar' ? 'صالة انتظار بجدار نباتي من تنفيذ MADE' : 'Waiting lounge with a moss wall by MADE')} />
 
       {/* services */}
       <section id="services" className="wrap col g40 sp">
