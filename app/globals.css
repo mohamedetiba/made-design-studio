@@ -247,7 +247,7 @@ button{font-family:inherit}
 
 @media (max-width:900px){
   :root{--hdr:72px}
-  .header{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--ivory)}
+  .header{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--ink)}
   .nav{padding:10px 0;flex-wrap:nowrap}
   .nav-links{display:none}
   .burger{display:flex}
