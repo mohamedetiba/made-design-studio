@@ -35,7 +35,6 @@ export default function Gallery({ images, locale }: { images: Img[]; locale: Loc
           <img src={images[lb].src} alt={t(images[lb].alt, locale)} style={{ maxWidth: 'min(1100px,100%)', maxHeight: '86vh', objectFit: 'contain' }} />
           <button type="button" className="icon-btn" onClick={() => setLb((lb + 1) % n)} aria-label="next">›</button>
           <button type="button" className="icon-btn" onClick={() => setLb(null)} aria-label="close" style={{ position: 'absolute', top: 20, right: 20 }}>✕</button>
-          <span className="latin" style={{ position: 'absolute', bottom: 20, left: '50%', transform: 'translateX(-50%)', color: 'var(--line)' }}>{lb + 1} / {n}</span>
         </div>
       )}
     </>

@@ -54,7 +54,7 @@ export default function ProjectsBrowser({ projects, spaces, ba, locale, d, dp, d
   return (
     <>
 
-      <div style={{ borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)', position: 'sticky', top: 'var(--hdr)', zIndex: 20, background: 'rgba(244,240,234,.95)', backdropFilter: 'blur(8px)' }}>
+      <div style={{ borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)', position: 'sticky', top: 'var(--hdr)', zIndex: 20, background: 'rgba(238,241,242,.95)', backdropFilter: 'blur(8px)' }}>
         <div className="wrap row tabs" role="tablist" style={{ gap: 0 }}>
           {tabs.map((k, i) => (
             <button key={k} role="tab" aria-selected={tab === k} type="button" onClick={() => setTab(k)}

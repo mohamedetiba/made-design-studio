@@ -2,15 +2,11 @@
  * Self-hosted fonts (via @fontsource) — no request to Google at build or run time,
  * which keeps builds reliable and is better for privacy and Core Web Vitals.
  */
-import '@fontsource/ibm-plex-sans-arabic/300.css';
-import '@fontsource/ibm-plex-sans-arabic/400.css';
-import '@fontsource/ibm-plex-sans-arabic/500.css';
-import '@fontsource/ibm-plex-sans-arabic/600.css';
-import '@fontsource/noto-naskh-arabic/400.css';
-import '@fontsource/noto-naskh-arabic/500.css';
-import '@fontsource/noto-naskh-arabic/600.css';
-import '@fontsource/jost/200.css';
-import '@fontsource/jost/300.css';
-import '@fontsource/jost/400.css';
+// Arabic: Almarai stands in for the brand's GE SS until licensed web files arrive.
+// Latin: ITC Avant Garde Gothic → TeX Gyre Adventor (public/fonts, declared in globals.css).
+import '@fontsource/almarai/300.css';
+import '@fontsource/almarai/400.css';
+import '@fontsource/almarai/700.css';
+import '@fontsource/almarai/800.css';
 
 export const fontVars = '';

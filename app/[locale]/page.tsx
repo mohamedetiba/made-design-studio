@@ -5,6 +5,7 @@ import { t, type Locale } from '@/lib/types';
 import Hero from '@/components/Hero';
 import Reveal from '@/components/Reveal';
 import Estimator from '@/components/Estimator';
+import ServicesList from '@/components/ServicesList';
 
 export default async function Home({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
@@ -18,27 +19,29 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
     <>
       <Hero d={d.hero} locale={locale} image={settings.heroImage || '/media/hero/hero-wide.jpg'} mobile={settings.heroImage ? undefined : '/media/hero/hero-01.jpg'} alt={settings.heroImage ? t(heroPic.alt, locale) : (locale === 'ar' ? 'صالة انتظار بجدار نباتي من تنفيذ MADE' : 'Waiting lounge with a moss wall by MADE')} />
 
+      {/* introduction */}
+      <section className="intro">
+        <div className="wrap intro-grid">
+          <span className="eyebrow ltr">{d.about.eyebrow}</span>
+          <Reveal><p className="intro-text">{d.about.body}</p></Reveal>
+        </div>
+      </section>
+
       {/* services */}
-      <section id="services" className="wrap col g40 sp">
-        <Reveal className="row between end">
-          <div className="col g14" style={{ maxWidth: 640 }}>
-            <span className="eyebrow">{d.services.eyebrow}</span>
-            <h2 className="h2">{d.services.title}</h2>
-          </div>
-          <p className="lead" style={{ maxWidth: 420, fontSize: 17 }}>{d.services.body}</p>
-        </Reveal>
-        <Reveal className="services-grid">
-          {d.services.items.map(([title, body], i) => (
-            <div key={title} className={`service${i === 3 ? ' dark' : ''}`}>
-              <span className="num" style={i === 3 ? { color: 'var(--taupe)' } : undefined}>0{i + 1}</span>
-              <span style={{ fontSize: 19, fontWeight: 600 }}>{title}</span>
-              <span style={{ fontSize: 15, lineHeight: 1.8, color: i === 3 ? 'var(--line)' : 'var(--body)' }}>{body}</span>
+      <section id="services" className="svc-sec">
+        <div className="wrap col g40">
+          <Reveal className="row between end">
+            <div className="col g14" style={{ maxWidth: 640 }}>
+              <span className="eyebrow">{d.services.eyebrow}</span>
+              <h2 className="h2 big">{d.services.title}</h2>
             </div>
-          ))}
-        </Reveal>
-        <div className="row center" style={{ gap: 10 }}>
-          <span className="muted small">{d.services.for}</span>
-          {d.services.sectors.map((s, i) => <span key={s} className="pill" style={i === 5 ? { borderColor: 'var(--ink)', fontWeight: 500 } : undefined}>{s}</span>)}
+            <p className="lead" style={{ maxWidth: 420, fontSize: 17 }}>{d.services.body}</p>
+          </Reveal>
+          <ServicesList items={d.services.items} href={`/${locale}#estimate`} />
+          <div className="row center" style={{ gap: 10 }}>
+            <span className="muted small">{d.services.for}</span>
+            {d.services.sectors.map((s) => <span key={s} className="pill">{s}</span>)}
+          </div>
         </div>
       </section>
 
@@ -47,7 +50,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
         <Reveal className="row between end">
           <div className="col g14">
             <span className="eyebrow">{d.projects.eyebrow}</span>
-            <h2 className="h2">{d.projects.title}</h2>
+            <h2 className="h2 big">{d.projects.title}</h2>
           </div>
           <Link className="btn btn-line" href={`/${locale}/projects`}>{d.projects.all}</Link>
         </Reveal>
@@ -87,7 +90,10 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
         </div>
       </div></section>
 
-      <Estimator d={d.est} settings={settings} />
+      <section className="est-band">
+        <div className="marq" aria-hidden="true"><span>{d.est.marquee}</span><span>{d.est.marquee}</span><span>{d.est.marquee}</span></div>
+        <Estimator d={d.est} settings={settings} />
+      </section>
 
     </>
   );

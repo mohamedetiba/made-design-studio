@@ -21,7 +21,7 @@ export default function Header({ locale, settings }: { locale: Locale; settings:
         <nav className="wrap nav" aria-label={locale === 'ar' ? 'القائمة الرئيسية' : 'Main navigation'}>
           <Link href={l} aria-label="MADE Design Studio" className="logo">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/made-logo-dark.svg" alt="MADE Design Studio" width={124} height={55} />
+            <img src="/made-logo-light.svg" alt="MADE Design Studio" width={124} height={55} />
           </Link>
           <div className="nav-links">
             {items.map((it) => <Link key={it.href} href={it.href}>{it.label}</Link>)}

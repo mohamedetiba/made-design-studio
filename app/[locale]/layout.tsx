@@ -7,6 +7,7 @@ import { getDict, isLocale, locales, siteUrl } from '@/lib/i18n';
 import { getSettings } from '@/lib/content';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SmoothScroll from '@/components/SmoothScroll';
 import JsonLd from '@/components/JsonLd';
 import type { Locale } from '@/lib/types';
 
@@ -51,6 +52,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} className={fontVars}>
       <body>
         <JsonLd data={org} />
+        <SmoothScroll />
         <Header locale={locale} settings={settings} />
         <main>{children}</main>
         <Footer locale={locale} settings={settings} />
