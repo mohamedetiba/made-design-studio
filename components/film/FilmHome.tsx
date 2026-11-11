@@ -44,7 +44,7 @@ const COPY = {
     marq: 'لنصنع مساحتك',
     close: 'أرسل تفاصيل مشروعك، ويتواصل معك مهندس مختص لتجهيز عرض سعر يناسبه.',
     quote: 'اطلب عرض سعر', talk: 'تحدث مع مهندس مختص',
-    sudaAlt: 'صالة معيشة في مشروع سدى',
+    sudaAlt: 'صالة معيشة في مشروع سدى', miskAlt: 'صالة معيشة في فيلا مسك', chAlt: 'مجلس فيلا الثريا',
   },
   en: {
     credit: 'Design Studio · Khobar',
@@ -80,15 +80,16 @@ const COPY = {
     marq: 'Let’s make your space',
     close: 'Send your project details and a specialist engineer will reach you to prepare a tailored quote.',
     quote: 'Request a quote', talk: 'Talk to an engineer',
-    sudaAlt: 'Living room in the Suda project',
+    sudaAlt: 'Living room in the Suda project', miskAlt: 'Living room in Misk Villa', chAlt: 'Majlis in the Chandelier Villa',
   },
 };
 
-export default function FilmHome({ locale, settings, est }: { locale: Locale; settings: Settings; est: Dict['est'] }) {
+export type Circle = { slug: string; src: string; alt: string; name: string; kind: string };
+
+export default function FilmHome({ locale, settings, est, more }: { locale: Locale; settings: Settings; est: Dict['est']; more: Circle[] }) {
   const c = COPY[locale];
   const ar = locale === 'ar';
   const root = useRef<HTMLDivElement>(null);
-  const [pos, setPos] = useState(50);
   const [peek, setPeek] = useState<number | null>(null);
   const peekRef = useRef<HTMLDivElement>(null);
   const L = `/${locale}`;
@@ -127,18 +128,13 @@ export default function FilmHome({ locale, settings, est }: { locale: Locale; se
 
         gsap.fromTo('.f-stmt .sw', { color: '#B9C3C7' }, { color: '#0A1011', stagger: 0.05, ease: 'none', scrollTrigger: { trigger: '.f-stmt', start: 'top 80%', end: 'bottom 45%', scrub: true } });
 
-        ScrollTrigger.create({ trigger: '.f-cmp', start: 'top 70%', once: true, onEnter: () => {
-          const o = { v: 85 };
-          gsap.to(o, { v: 50, duration: 1.8, ease: 'expo.out', onUpdate: () => setPos(o.v) });
-        } });
 
-        gsap.utils.toArray<HTMLElement>('.f-reel-head h2, .f-compare h2, .f-services h2, .f-band h2, .f-macro .cap h2').forEach((h) => {
+        gsap.utils.toArray<HTMLElement>('.f-reel-head h2, .f-services h2').forEach((h) => {
           gsap.from(h, { y: 60, opacity: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: h, start: 'top 88%' } });
         });
         gsap.utils.toArray<HTMLElement>('.f-svc li').forEach((li, i) => {
           gsap.from(li, { y: 40, opacity: 0, duration: 1, delay: i * 0.06, ease: 'expo.out', scrollTrigger: { trigger: li, start: 'top 92%' } });
         });
-        gsap.from('.f-band video', { scale: 1.2, ease: 'none', scrollTrigger: { trigger: '.f-band', start: 'top bottom', end: 'bottom top', scrub: true } });
         gsap.utils.toArray<HTMLElement>('.f-reel .frame').forEach((f) => {
           gsap.from(f, { y: 50, opacity: 0, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: f, start: 'top 92%' } });
         });
@@ -156,8 +152,6 @@ export default function FilmHome({ locale, settings, est }: { locale: Locale; se
         gsap.utils.toArray<HTMLElement>('.f-track .img img').forEach((img) => {
           gsap.fromTo(img, { xPercent: -6 }, { xPercent: 6, ease: 'none', scrollTrigger: { ...st, scrub: true } });
         });
-        gsap.to('.f-lens', { width: '100%', height: '100%', ease: 'none', scrollTrigger: { trigger: '.f-stage', start: 'top 70%', end: 'center center', scrub: true } });
-        gsap.from('.f-lens img', { scale: 1.5, ease: 'none', scrollTrigger: { trigger: '.f-stage', start: 'top 80%', end: 'center center', scrub: true } });
       }, el);
       // fonts and images change heights; re-measure once things settle
       const refresh = () => ScrollTrigger.refresh();
@@ -190,10 +184,12 @@ export default function FilmHome({ locale, settings, est }: { locale: Locale; se
       {/* OPENER */}
       <section className="f-opener" aria-label="MADE Design Studio">
         <div className="f-trip">
-          <div className="p"><video src={`${M}/film/misk-1.mp4`} poster={`${M}/film/misk-1.jpg`} autoPlay muted loop playsInline preload="auto" /></div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <div className="p"><img src={`${M}/misk-villa/misk-villa-02.jpg`} alt={c.miskAlt} /></div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <div className="p"><img src={`${M}/suda/suda-01.jpg`} alt={c.sudaAlt} /></div>
-          <div className="p"><video src={`${M}/film/misk-2.mp4`} poster={`${M}/film/misk-2.jpg`} autoPlay muted loop playsInline preload="auto" /></div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <div className="p"><img src="/images/0038.jpg" alt={c.chAlt} /></div>
         </div>
         <div className="title wrap">
           <span className="credit">{c.credit}</span>
@@ -224,60 +220,6 @@ export default function FilmHome({ locale, settings, est }: { locale: Locale; se
         </div>
       </section>
 
-      {/* REEL */}
-      <section className="f-reel" id="projects">
-        <div className="wrap f-reel-head">
-          <h2>{c.work}</h2>
-          <Link href={`${L}/projects`} className="kicker">{c.all} · 0{c.frames.length} →</Link>
-        </div>
-        <div className="f-track">
-          {ordered.map(({ f: [slug, src, name, tag, alt, tall], n }) => (
-            <Link key={slug} className={`frame${tall ? ' tall' : ''}`} href={`${L}/projects/${slug}`}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <div className="img"><img src={src} alt={alt} /></div>
-              <div className="meta"><h3>{name}</h3><span className="num">0{n}</span></div>
-              <span className="tag">{tag}</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* MACRO */}
-      <section className="f-macro" aria-label={c.macro}>
-        <div className="f-stage">
-          <span className="side r">{c.macroSide[0]}<br />{c.macroSide[1]}</span>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <div className="f-lens"><img src={`${M}/misk-villa/misk-villa-04.jpg`} alt={c.macroSide[0]} loading="lazy" /></div>
-          <span className="side l credit">Detail 01</span>
-          <div className="cap"><h2>{c.macro}</h2></div>
-        </div>
-      </section>
-
-      {/* COMPARE */}
-      <section className="f-compare">
-        <div className="wrap">
-          <div className="head">
-            <span className="credit big">{c.cmpCredit}</span>
-            <div>
-              <h2>{c.cmpTitle}</h2>
-              <p>{c.cmpBody}</p>
-            </div>
-          </div>
-          <div className="f-cmp" style={{ '--pos': `${pos}%` } as React.CSSProperties}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${M}/ba/ba-02.jpg`} alt={c.cmpReal} loading="lazy" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <div className="top"><img src={`${M}/ba/ba-01.jpg`} alt={c.cmpDesign} loading="lazy" /></div>
-            <div className="handle" />
-            <div className="knob" aria-hidden="true">drag</div>
-            <span className="lab r">{ar ? c.cmpDesign : c.cmpReal}</span>
-            <span className="lab l">{ar ? c.cmpReal : c.cmpDesign}</span>
-            <input type="range" min={0} max={100} step={0.5} value={pos} aria-label={c.cmpLabel} onChange={(e) => setPos(Number(e.target.value))} />
-          </div>
-          <Link href={`${L}/projects?tab=ba`} className="f-more">{c.cmpMore} →</Link>
-        </div>
-      </section>
-
       {/* SERVICES */}
       <section className="f-services" id="services">
         <div className="wrap">
@@ -305,13 +247,34 @@ export default function FilmHome({ locale, settings, est }: { locale: Locale; se
         ))}
       </div>
 
-      {/* FILM BAND */}
-      <section className="f-band" aria-label={c.bandAlt}>
-        <video src={`${M}/film/sahsah.mp4`} poster={`${M}/film/sahsah.jpg`} autoPlay muted loop playsInline preload="metadata" />
-        <div className="cap wrap">
-          <h2>{c.band}</h2>
-          <Link href={`${L}/projects/youthful-workspace`} className="credit big">{c.bandCredit}</Link>
+      {/* REEL */}
+      <section className="f-reel" id="projects">
+        <div className="wrap f-reel-head">
+          <h2>{c.work}</h2>
+          <Link href={`${L}/projects`} className="kicker">{c.all} · 0{c.frames.length} →</Link>
         </div>
+        <div className="f-track">
+          {ordered.map(({ f: [slug, src, name, tag, alt, tall], n }) => (
+            <Link key={slug} className={`frame${tall ? ' tall' : ''}`} href={`${L}/projects/${slug}`}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <div className="img"><img src={src} alt={alt} /></div>
+              <div className="meta"><h3>{name}</h3><span className="num">0{n}</span></div>
+              <span className="tag">{tag}</span>
+            </Link>
+          ))}
+        </div>
+        {more.length > 0 && (
+          <div className="wrap f-circles">
+            {more.map((p) => (
+              <Link key={p.slug} href={`${L}/projects/${p.slug}`} className="f-circle">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <span className="ph"><img src={p.src} alt={p.alt} loading="lazy" /></span>
+                <span className="nm">{p.name}</span>
+                <span className="kd">{p.kind}</span>
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* CLOSE + QUOTE */}
