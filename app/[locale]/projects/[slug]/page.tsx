@@ -6,6 +6,7 @@ import { PROJECTS } from '@/lib/seed';
 import { getDict, locales, siteUrl } from '@/lib/i18n';
 import { t, type Locale } from '@/lib/types';
 import Gallery from '@/components/Gallery';
+import Parallax from '@/components/Parallax';
 import JsonLd from '@/components/JsonLd';
 
 export async function generateStaticParams() {
@@ -48,21 +49,22 @@ export default async function ProjectPage({ params }: { params: Promise<{ locale
         creator: { '@type': 'Organization', name: 'MADE Design Studio', url: siteUrl },
         url: `${siteUrl}/${locale}/projects/${slug}`,
       }} />
-      <section className="wrap col g20 rise" style={{ padding: '48px 24px 32px' }}>
-        <Link href={`/${locale}/projects`} className="muted small">{d.detail.back}</Link>
-        <h1 className="h1" style={{ fontSize: 'clamp(34px,4.4vw,58px)' }}>{name}</h1>
-        <dl className="row" style={{ gap: 40, margin: 0 }}>
+      <section className="pd-hero">
+        <Parallax speed={0.18}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={p.cover.src} alt={t(p.cover.alt, locale)} fetchPriority="high" />
+        </Parallax>
+        <span className="shade" aria-hidden="true" />
+        <div className="wrap cap rise">
+        <Link href={`/${locale}/projects`} className="small">{d.detail.back}</Link>
+        <h1 className="h1">{name}</h1>
+        <dl>
           {[[d.detail.kind, t(p.kind, locale)], [d.detail.scope, t(p.scope, locale)], [d.detail.photos, [p.gallery.some((g) => g.stage === 'after') && d.detail.real, p.gallery.some((g) => g.stage !== 'after') && d.detail.render].filter(Boolean).join(' · ')]].map(([k, v]) => (
-            <div key={k} className="col g8"><dt className="muted small">{k}</dt><dd style={{ margin: 0, fontSize: 17 }}>{v}</dd></div>
+            <div key={k} className="col g8"><dt>{k}</dt><dd>{v}</dd></div>
           ))}
         </dl>
-      </section>
-      <div className="wrap rise2" style={{ padding: '0 24px' }}>
-        <div className="zoom" style={{ height: 'min(72vh,680px)' }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={p.cover.src} alt={t(p.cover.alt, locale)} />
         </div>
-      </div>
+      </section>
       {story.length > 0 && (
         <section className="wrap col g20" style={{ padding: '56px 24px 0', maxWidth: 860 }}>
           {story.map((s, k) => <p key={k} className="lead" style={{ maxWidth: 'none' }}>{t(s, locale)}</p>)}

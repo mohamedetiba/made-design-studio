@@ -1,10 +1,11 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
+import HeroSlides from './HeroSlides';
 import type { Dict } from '@/lib/i18n';
 import type { Locale } from '@/lib/types';
 
 /** Full-screen project image (client's choice) with the introduction laid over it; a curtain lifts on load. */
-export default function Hero({ d, locale, image, mobile, alt }: { d: Dict['hero']; locale: Locale; image: string; mobile?: string; alt: string }) {
+export default function Hero({ d, locale, slides }: { d: Dict['hero']; locale: Locale; slides: { wide: string; tall: string; alt: string }[] }) {
   const words = (line: string, offset: number) =>
     line.split(' ').map((w, i) => (
       <Fragment key={w + i}>
@@ -14,11 +15,7 @@ export default function Hero({ d, locale, image, mobile, alt }: { d: Dict['hero'
   const n1 = d.title1.split(' ').length;
   return (
     <section id="top" className="hero-full">
-      <picture>
-        {mobile && <source media="(max-width: 720px)" srcSet={mobile} />}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="hero-bg" src={image} alt={alt} fetchPriority="high" />
-      </picture>
+      <HeroSlides slides={slides} />
       <div className="hero-shade" aria-hidden="true" />
       <div className="wrap hero-inner">
         <div className="col g20" style={{ maxWidth: 680 }}>

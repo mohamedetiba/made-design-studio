@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getDict } from '@/lib/i18n';
 import type { Locale } from '@/lib/types';
 import Reveal from '@/components/Reveal';
+import ScaleIn from '@/components/ScaleIn';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -36,6 +37,16 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             <p style={{ margin: 0, fontSize: 16, lineHeight: 1.9, color: 'var(--body)', maxWidth: 560 }}>{d.about.body}</p>
           </Reveal>
         </div>
+      </section>
+
+      <section aria-label={locale === 'ar' ? 'الحِرفة' : 'Craft'} style={{ background: 'var(--ink)', paddingBlock: 80 }}>
+        <ScaleIn>
+          <div className="lens">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/media/misk-villa/misk-villa-04.jpg" alt={locale === 'ar' ? 'تفاصيل مطبخ فيلا مسك' : 'Kitchen details, Misk Villa'} loading="lazy" />
+          </div>
+          <div className="cap"><h2>{locale === 'ar' ? 'كل وصلة محسوبة. كل خامة مختارة.' : 'Every joint considered. Every material chosen.'}</h2></div>
+        </ScaleIn>
       </section>
 
       <section id="journey" className="bg-sand">

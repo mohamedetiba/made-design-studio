@@ -25,6 +25,8 @@ export default function ServicesList({ items, href }: { items: string[][]; href:
           <li key={title}>
             <Link href={href} onMouseEnter={() => setOn(i)} onMouseLeave={() => setOn(null)} onFocus={() => setOn(i)} onBlur={() => setOn(null)}>
               <span className="latin num">0{i + 1}</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <span className="thumb" aria-hidden="true"><img src={PEEKS[i % PEEKS.length]} alt="" loading="lazy" /></span>
               <span className="nm">{title}</span>
               <span className="ds">{body}</span>
             </Link>
